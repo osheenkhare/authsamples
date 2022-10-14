@@ -30,21 +30,16 @@ private async Task<DialogTurnResult> PromptStepAsync(WaterfallStepContext stepCo
             return await stepContext.BeginDialogAsync(nameof(OAuthPrompt), null, cancellationToken);
         }
 
-
 private async Task<DialogTurnResult> LoginStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
+            
             var tokenResponse = (TokenResponse)stepContext.Result;
             if (tokenResponse?.Token != null)
             {
                 var token = tokenResponse.Token;
 
-            // On successful login, the token contains sign in token.
-
-            return await stepContext.PromptAsync(nameof(ConfirmPrompt), new PromptOptions 
-            { 
-Prompt = MessageFactory.Text("Would you like to view your token?") }, cancellationToken);
+                 // On successful login, the token contains sign in token.
             }
-
             await stepContext.Context.SendActivityAsync(
             MessageFactory.Text("Login was not successful please try again."), cancellationToken);
 
