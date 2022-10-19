@@ -38,7 +38,8 @@ async loginStep(stepContext) {
         if (!tokenResponse || !tokenResponse.token) {
             await stepContext.context.sendActivity('Login was not successful please try again.');
         } else {
-            const token = new SimpleGraphClient(tokenResponse.token);
+            const token = tokenResponse.token;
+            // On successful login, the token contains sign in token.
         }
         return await stepContext.endDialog();
     }
