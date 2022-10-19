@@ -38,10 +38,12 @@ private async Task<DialogTurnResult> LoginStepAsync(WaterfallStepContext stepCon
             {
                 var token = tokenResponse.Token;
 
-                 // On successful login, the token contains sign in token.
+                // On successful login, the token contains sign in token.
             }
-            await stepContext.Context.SendActivityAsync(
-            MessageFactory.Text("Login was not successful please try again."), cancellationToken);
+            else 
+            {
+                await stepContext.Context.SendActivityAsync(MessageFactory.Text("Login was not successful please try again."), cancellationToken);
+            }            
 
             return await stepContext.EndDialogAsync(cancellationToken: cancellationToken);
         }
